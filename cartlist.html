@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stored Ingredients and Orders</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>body { background-image: url("r2.webp"); }</style>
+</head>
+<body>
+    <h1 style="color:#9aff3b">Grocery Network</h1><br>
+    <main>
+        <section class="content">
+            <h2>Stored Ingredients</h2>
+            <button onclick="fetchIngredients()">Load Ingredients</button>
+            <div id="ingredients-container">
+                <p>No ingredients listed.</p>
+            </div>
+
+            <h2>Incoming Orders</h2>
+            <div id="order-list">
+                <p>Loading orders...</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Fetch orders from the server
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('/get-orders')
+                .then(response => response.json())
+                .then(data => {
+                    const orderList = document.getElementById('order-list');
+                    if (data.orders.length === 0) {
+                        orderList.innerHTML = "<p>No new orders placed.</p>";
+                    } else {
+                        orderList.innerHTML = data.orders.map(order => `
+                            <div class="order-item">
+                                <p><strong>Shop Name:</strong> ${order.shopName}</p>
+                                <p><strong>Mobile:</strong> ${order.mobile}</p>
+                                <p><strong>Address:</strong> ${order.address}</p>
+                                <p><strong>Quantity:</strong> ${order.quantity} kg</p>
+                                <p><strong>Date:</strong> ${new Date(order.date).toLocaleString()}</p>
+                            </div>
+                        `).join('');
+                    }
+                })
+                .catch(error => console.error('Error loading orders:', error));
+        });
+
+        // Fetch stored ingredients from the server
+        function fetchIngredients() {
+            fetch('/get-ingredients')
+                .then(response => response.json())
+                .then(data => {
+                    const ingredientsContainer = document.getElementById('ingredients-container');
+                    if (data.ingredients.length === 0) {
+                        ingredientsContainer.innerHTML = "<p>No ingredients listed.</p>";
+                    } else {
+                        ingredientsContainer.innerHTML = data.ingredients.map(ingredient => `
+                            <div class="ingredient-item">
+                                <p><strong>Shop Name:</strong> ${ingredient.shopName}</p>
+                                <p><strong>Ingredient:</strong> ${ingredient.ingredient}</p>
+                                <p><strong>Expiry Date:</strong> ${ingredient.expiryDate}</p>
+                                <p><strong>Quantity:</strong> ${ingredient.quantity} kg</p>
+                                <p><strong>Price:</strong> $${ingredient.price} per kg</p>
+                                <p><strong>Order Expected Date:</strong> ${ingredient.orderExpectedDate}</p>
+                            </div>
+                        `).join('');
+                    }
+                })
+                .catch(error => console.error('Error loading ingredients:', error));
+        }
+    </script>
+</body>
+</html>

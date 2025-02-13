@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Orders</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: #f7f7f7;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+body{
+.dashboard-container {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  color:blue;
+  text-decoration: underline;
+}
+    #restaurant-order-list {
+      margin: 20px auto;
+      width: 90%;
+      padding: 15px;
+      background-color: #ffffff;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .order-item {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    h3 {
+      margin: 10px 0;
+    }
+  </style>
+  <script src="common-script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Restaurant Orders</h1>
+  </header>
+  <a href="restaurant.html"class="dashboard-container">Go to Homepage</a>
+  </header>
+
+  <!-- Div to display the list of restaurant orders -->
+  <div id="restaurant-order-list">
+    <!-- Orders will be dynamically loaded here -->
+  </div>
+
+  <script>
+    // Function to display restaurant orders in restaurant_orders.html
+    function displayRestaurantOrders() {
+      const orders = JSON.parse(localStorage.getItem("restaurantOrders")) || [];
+      const orderListDiv = document.getElementById("restaurant-order-list");
+
+      if (orders.length === 0) {
+        orderListDiv.innerHTML = `<p>No orders have been placed yet.</p>`;
+        return;
+      }
+
+      orderListDiv.innerHTML = orders
+        .map((order, index) => `
+          <div class="order-item">
+            <h3>Order #${index + 1}</h3>
+            <p><strong>Restaurant Name:</strong> ${order.restaurantName}</p>
+            <p><strong>Mobile:</strong> ${order.mobile}</p>
+            <p><strong>Address:</strong> ${order.address}</p>
+            <p><strong>Ingredient:</strong> ${order.ingredient}</p>
+            <p><strong>Quantity Ordered:</strong> ${order.orderQuantity} kg</p>
+            <p><strong>Total Price:</strong> $${order.totalPrice.toFixed(2)}</p>
+            <p><strong>Order Date:</strong> ${order.orderDate}</p>
+          </div>
+          <hr>
+        `)
+        .join("");
+    }
+
+    // Automatically load restaurant orders when the page loads
+    document.addEventListener("DOMContentLoaded", () => {
+      displayRestaurantOrders();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Orders</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common-script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Restaurant Orders</h1>
+  </header>
+
+  <div id="restaurant-order-list"></div> <!-- Updated ID -->
+
+  <script>
+    // Function to load and display restaurant orders
+    function displayRestaurantOrders() {
+      const orders = JSON.parse(localStorage.getItem("restaurantOrders")) || [];
+      const orderListDiv = document.getElementById("restaurant-order-list");
+
+      if (orders.length > 0) {
+        orderListDiv.innerHTML = orders.map((order, index) => `
+          <div class="order-item">
+            <h3>Order #${index + 1}</h3>
+            <p><strong>Restaurant Name:</strong> ${order.restaurantName}</p>
+            <p><strong>Ingredient:</strong> ${order.ingredient}</p>
+            <p><strong>Quantity Ordered:</strong> ${order.orderQuantity} kg</p>
+            <p><strong>Total Price:</strong> $${order.totalPrice.toFixed(2)}</p>
+            <p><strong>Order Date:</strong> ${order.orderDate}</p>
+          </div>
+          <hr>
+        `).join("");
+      } else {
+        orderListDiv.innerHTML = "<p>No orders have been placed yet.</p>";
+      }
+    }
+
+    // Automatically load restaurant orders when the page loads
+    document.addEventListener("DOMContentLoaded", displayRestaurantOrders);
+  </script>
+</body>
+</html>

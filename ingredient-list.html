@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingredient List</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    function loadIngredients() {
+      const ingredientList = JSON.parse(localStorage.getItem("ingredients")) || [];
+      const listContainer = document.getElementById("ingredient-list");
+
+      if (ingredientList.length === 0) {
+        listContainer.innerHTML = "<p>No ingredients have been listed yet.</p>";
+      } else {
+        ingredientList.forEach(ingredient => {
+          const listItem = document.createElement("div");
+          listItem.innerHTML = `
+            <p><strong>Ingredient:</strong> ${ingredient.ingredient}</p>
+            <p><strong>Expiry Date:</strong> ${ingredient.expiryDate}</p>
+            <p><strong>Quantity:</strong> ${ingredient.quantity} kg/gm</p>
+            <hr>
+          `;
+          listContainer.appendChild(listItem);
+        });
+      }
+    }
+
+    window.onload = loadIngredients;
+  </script>
+</head>
+<body background="r2.webp">
+  <h1>Stored Ingredients</h1>
+  <div id="ingredient-list"></div>
+</body>
+</html>

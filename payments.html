@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payments</title>
+  <style>
+    body {
+      background-color: #f7f7f7;
+    }
+    .dashboard-container {
+      position: fixed;
+      top: 30px;
+      left: 20px;
+      color: blue;
+      text-decoration: underline;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #payment-summary {
+      margin: 20px auto;
+      width: 80%;
+      padding: 15px;
+      background-color: #ffffff;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    #payment-buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common-script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Payment Information</h1>
+    <nav>
+      <ul>
+        <li><a href="restaurant.html" style="color:blue">Back to Restaurant</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Div to display payment information -->
+  <div id="payment-summary">
+    <h2>Order Details</h2>
+    <p id="order-details">
+      <!-- Example: Order details will be displayed dynamically -->
+      Restaurant Name: Gourmet Delight<br>
+      Ingredient: Rice<br>
+      Quantity: 20 kg<br>
+      Total Price: $60<br>
+    </p>
+    <p>Payment Status: Pending</p>
+  </div>
+
+  <!-- Button to confirm payment -->
+  <div id="payment-buttons">
+    <button id="confirm-payment" onclick="confirmPayment()">Confirm Payment</button>
+  </div>
+
+  <script>
+    function confirmPayment() {
+      // Example order data (you can dynamically load this data)
+      const orderData = {
+        restaurantName: "Gourmet Delight",
+        ingredient: "Rice",
+        orderQuantity: 20,
+        totalPrice: 60,
+        mobile: "9876543210",
+        address: "123 Food Lane, Flavor Town",
+        orderDate: new Date().toLocaleDateString(),
+      };
+
+      // Retrieve existing orders from localStorage
+      const orders = JSON.parse(localStorage.getItem("restaurantOrders")) || [];
+
+      // Add new order to orders
+      orders.push(orderData);
+
+      // Save updated orders back to localStorage
+      localStorage.setItem("restaurantOrders", JSON.stringify(orders));
+
+      // Display a success message
+      alert("Payment successful! Order has been added to Restaurant Orders.");
+
+      // Optionally navigate to restaurant_orders.html
+      window.location.href = "restaurant_orders.html";
+    }
+  </script>
+</body>
+</html>

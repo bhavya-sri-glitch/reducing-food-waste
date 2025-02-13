@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Wholesale Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>body { background-image: url("wholesale.webp"); }</style>
+    <script src="common-script.js" defer></script>
+</head>
+<body>
+    <h1 style="color:#9aff3b"><center>Grocery Network</center></h1><br>
+    <h3 style="color:#9aff3b"><center>~~~Wholesale Dashboard~~~</center></h3>
+    <div class="dashboard-container">
+        <a href="restaurant.html">Go to homepage</a>
+    </div>
+    <br>
+
+    <main>
+        <section class="content">
+            <h2>List Surplus Ingredients</h2>
+            <form id="ingredient-form">
+                <label for="shop-name">Shop Name:</label>
+                <input type="text" id="shop-name" required>
+
+                <label for="ingredient">Ingredient:</label>
+                <input type="text" id="ingredient" name="ingredient" required>
+
+                <label for="expiry-date">Expiry Date:</label>
+                <input type="date" id="expiry-date" name="expiry-date" required>
+
+                <label for="quantity">Available Quantity (kg):</label>
+                <input type="number" id="quantity" name="quantity" required>
+
+                <label for="price">Price per kg:</label>
+                <input type="number" id="price" name="price" required>
+
+                <button type="button" onclick="postIngredient()">Post Ingredient</button>
+            </form>
+            <p id="thank-you-message" style="display:none;">Thank you! Your listing has been shared with nearby restaurants.</p>
+
+            <p><a href="stored_ingredients.html">Go to Stored Ingredients</a></p>
+        </section>
+    </main>
+</body>
+</html>

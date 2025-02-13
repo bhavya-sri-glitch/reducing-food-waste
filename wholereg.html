@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Dashboard~~</title>
+  
+  <link rel="stylesheet" href="styles.css">
+  
+<script>
+   let a=0;
+  function userval()
+  {
+      a++;
+         var u=/^[a-zA-Z]+$/;
+         var user=document.getElementById("t1").value;
+        if (!user.match(u))
+            {
+                a--;
+                 alert("only alphabets are allowed");
+                   }
+              }
+function pwdval()
+{
+a++;
+var pwd=document.getElementById("p1").value;
+var p=/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[&%$#@<>])[a-zA-Z0-9&%$#@<>]{10,12}$/;
+if(!p.test(pwd))
+{
+alert("password must contain atleast 10 characters with 1 digit 1 upper case and one special symbol");
+a--;
+}
+}
+function cpwdval()
+{
+a++;
+var pwd=document.getElementById("p1").value;
+var conf=document.getElementById("p2").value;
+if(!(pwd===conf))
+alert("password and confirm password not matched");
+}
+else{alert("password and confirm password matched");}
+function mailval()
+{
+a++;
+var mail=document.getElementById("m1").value;
+var m=/[a-zA-Z]+@[a-z]+\.[a-z]{2,3}$/;
+if(!m.test(mail))
+alert("wrong mailid format");
+}
+function mobileval()
+{
+a++;
+var mobile=document.getElementById("m2").value;
+var mob=/[6-9]*\d{9}$/;
+if(!mob.test(mobile))
+alert("wrong mobile number");
+}
+function display()
+{
+if(a==5)
+{
+alert("Registered successfully...");
+return true;
+}
+else{
+alert("must enter all fields");
+return false;
+}
+}
+function reset()
+{
+document.getElementById("t1").value="";
+document.getElementById("p1").value="";
+}
+   </script>
+   <style>
+    body{
+      .dashboard-container {
+        position: fixed;
+        top: 30px;
+        left: 20px;
+        color:whitesmoke;
+        text-decoration: underline;
+      }
+    }
+  </style>
+   <link rel="logo.webp">
+
+   </head>
+   <h1 style="color:#9aff3b" align="center">Grocery Network </h1><br>
+   <h3 style="color:#9aff3b"><center>~~~Restaurant Dashboard~~~</center></h3>
+   <div class="dashboard-container">
+        
+    <a href="wholesale.html">Go to homepage</a>
+</div>
+<br>
+<body background="r2.webp" >
+  <div class="form-container">
+    <h2><u>Register</u></h2>
+    <form action="wholeafterlr.html" method="GET">
+      
+<table>
+<tr>
+<td><b>First Name:</b></td>
+<td><input type="text" id="restaurant-name"name="restaurant_name "required></td>
+</tr>
+
+<tr>
+<td><b>Last Name:</b></td>
+<td><input type="text" id="t1" onchange="userval()"></td>
+</tr>
+<tr>
+<td><b>Password:</b></td>
+<td><input type="password" id="p1" onchange="pwdval()"></td>
+</tr>
+<tr>
+<td><b>Confirm Password:</b></td>
+<td><input type="password" id="p2" onchange="cpwdval()"></td>
+</tr>
+<tr>
+<td><b>Email Id:<b></td>
+<td><input type="mail" name="email" id="m1" onchange="mailval()"></td>
+</tr>
+<tr>
+<td><b>Mobile number:</b></td>
+<td><input type="text"  name="mobile"  id="m2" onchange="mobileval()"></td>
+</tr>
+<tr>
+
+<tr>
+<td><b>Date of Birth:</b></td>
+<td><input type="date" name="dob"></td>
+</tr>
+
+<tr>
+<td><b>Restaurant Address:</b></td>
+<td><input type="text" name="address" id="restaurant-address" required></td>
+</tr>
+
+<tr>
+<td>
+<input type="submit" name="s" onclick="display()" style=" background-color: #2e7d32; color: #fff;">
+</td>
+<td>
+<input type="reset" name="r" onclick="reset()" style=" background-color: #2e7d32; color: #fff;">
+</td>
+</tr>
+</table>
+<p>already have an account? <a href="wholelogin.html">Login here</a></p>
+</form>
+</div>
+</body>
+</html>

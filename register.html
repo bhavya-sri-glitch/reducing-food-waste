@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylehome.css">
+    <link rel="logo.webp">
+
+    <title>Grocery Network - Register</title>
+    <script></script>
+    <style>body{background-image: url("h2.webp");} </style>
+
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <p>Sign up to start using the Grocery Network</p>
+
+        <form action="register_user.php" method="POST">
+            <label for="userType">Select Your Role:</label>
+            <select id="userType" name="userType" required>
+                <option value="restaurant">Restaurant</option>
+                <option value="wholesale">Wholesale Shop</option>
+            </select>
+            <label for="name">Shop Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" class="btn">Register</button>
+        </form>
+
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="help.html">Help</a>
+        </div>
+    </div>
+</body>
+</html>

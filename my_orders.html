@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common-script.js" defer></script>
+  <style>h1 { text-align: center; }
+  body{
+.dashboard-container {
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  color:blue;
+  text-decoration: underline;
+}
+}</style>
+</head>
+<body>
+  <header>
+    <h1>My Orders</h1>
+    <a href="wholesale.html"class="dashboard-container">Go to Homepage</a>
+  </header>
+  
+  <div id="order-list"></div>
+
+  <script>
+    // Function to load and display orders in My Orders page
+    function loadOrders() {
+      const orders = JSON.parse(localStorage.getItem("orders")) || [];
+      const orderListDiv = document.getElementById("order-list");
+
+      if (orders.length === 0) {
+        orderListDiv.innerHTML = "<p>No orders have been placed yet.</p>";
+        return;
+      }
+
+      // Generate HTML to display all orders
+      orderListDiv.innerHTML = orders
+        .map(
+          (order, index) => `
+            <p><strong>Order ${index + 1}</strong></p>
+            <p>Restaurant Name: ${order.restaurantName}</p>
+            <p>Mobile: ${order.mobile}</p>
+            <p>Address: ${order.address}</p>
+            <p>Ingredient: ${order.ingredient}</p>
+            <p>Quantity: ${order.orderQuantity} kg</p>
+            <p>Total Price: $${order.totalPrice.toFixed(2)}</p>
+            <p>Order Date: ${order.orderDate}</p>
+            <hr>
+          `
+        )
+        .join("");
+    }
+
+    // Automatically load orders on My Orders page when it loads
+    document.addEventListener("DOMContentLoaded", () => {
+      loadOrders();
+    });
+  </script>
+</body>
+</html>

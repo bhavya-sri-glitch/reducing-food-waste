@@ -1,0 +1,30 @@
+// server.js
+const express = require('express');
+const fs = require('fs');
+const app = express();
+
+app.use(express.json());
+app.use(express.static('public'));
+
+let orders = [];
+
+// Endpoint for placing an order
+app.post('/place-order', (req, res) => {
+    const { shopName, mobile, address, quantity } = req.body;
+    const newOrder = { shopName, mobile, address, quantity };
+    
+    // Save order to the list
+    orders.push(newOrder);
+
+    res.json({ message: 'Order placed successfully' });
+});
+
+// Endpoint for restaurant to get orders
+app.get('/get-orders', (req, res) => {
+    res.json({ orders });
+});
+
+// Start the server
+app.listen(3000, () => {
+    console.log('Server running on http://localhost:3000');
+});
